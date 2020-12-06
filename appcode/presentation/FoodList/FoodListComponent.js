@@ -20,7 +20,9 @@ class FoodListComponent extends React.Component {
     return (
       <View style={{ flex: 1 }}>
 
-        {!errorState && <View style={styles.view}></View>}
+        {!errorState && <View style={styles.view}>
+
+        </View>}
 
         {errorState && <ErrorComponent onRetry={() => this.props.onRetry} />}
 

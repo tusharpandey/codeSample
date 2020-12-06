@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     { flex: 1, alignSelf: 'center', justifyContent: 'center' },
 
   view: {
-    alignSelf: 'center', justifyContent: 'center', paddingVertical: 2, paddingHorizontal: 20
+    flex: 1, alignSelf: 'center', justifyContent: 'center', paddingVertical: 2, paddingHorizontal: 20,
   },
 
   buttonContainer:

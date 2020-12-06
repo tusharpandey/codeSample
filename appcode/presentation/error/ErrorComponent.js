@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView, View, Button
-} from 'react-native';
-// import { Button } from 'react-native-elements';
+import { View } from 'react-native';
+import { CustomButton } from '../../utils/Button';
 import * as Strings from '../../utils/Strings'
 import styles from './ErrorComponentStyle'
 
@@ -14,15 +12,11 @@ class ErrorComponent extends React.Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.view}>
-          <Button
-            onPress={this.onRetry}
-            title={Strings.PLEASE_TRY_AGAIN}
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
+      <View style={styles.view}>
+        <CustomButton
+          onPress={this.onRetry}
+          title={Strings.PLEASE_TRY_AGAIN}
+        />
       </View>
     )
   }
