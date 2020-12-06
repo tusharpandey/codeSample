@@ -1,0 +1,1 @@
+export const APPROVED_FOOD_LIST_ID = "approved_food_list_id"
