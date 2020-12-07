@@ -26,7 +26,8 @@ class ApprovedFoodListComponent extends Component {
                             style={styles.cross_button_style}
                         />
                         <Text style={styles.page_title_text_style}>{AppString.APPROVED_FOOD_LIST}</Text>
-                        <InputComponent />
+                        <InputComponent
+                            handleSearching={this.props.handleSearching} />
                     </View>
                     } />
                 <View style={styles.message_button_container}>

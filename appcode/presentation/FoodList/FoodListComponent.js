@@ -19,6 +19,7 @@ class FoodListComponent extends React.Component {
         {!errorState && <View style={styles.view}>
           <ApprovedFoodListComponent
             data={this.props.data}
+            handleSearching={this.props.handleSearching}
             onItemClick={this.props.onItemClick}
             onBackPress={this.props.onBackPress} />
         </View>}

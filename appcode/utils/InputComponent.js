@@ -19,7 +19,7 @@ function InputComponent(props) {
                 placeholder={AppString.INPUT_FIELD_HINT}
                 placeholderTextColor="#9a73ef"
                 autoCapitalize="none"
-                onChangeText={this.handleEmail} />
+                onChangeText={props.handleSearching} />
         </View>
     );
 }
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     inputComponent: {
+        flex: 1,
     },
     icon: {
         width: 13, height: 13, marginRight: 10,

@@ -3,6 +3,7 @@ import FoodListComponent from "./FoodListComponent";
 import GetApprovedFoodUseCase from '../../domain/GetApprovedFoodUseCase';
 import { goBack } from '../../utils/navigation/NavigationService';
 import DATA from './DataSet';
+import { isEmptyText } from '../../utils/TextUtil';
 
 class FoodListContainer extends React.Component {
 
@@ -11,12 +12,30 @@ class FoodListContainer extends React.Component {
     this.state = {
       loaderState: false,
       errorState: false,
-      data: DATA
+      data: JSON.parse(JSON.stringify(DATA))
     }
   }
 
   onBackPress = () => {
     goBack()
+  }
+
+  handleSearching = (searchText) => {
+    if (isEmptyText(searchText)) {
+      this.setState({ data: JSON.parse(JSON.stringify(DATA)) })
+      return
+    }
+    let dataSet = JSON.parse(JSON.stringify(DATA))
+    let dataSetToUpload = []
+    dataSet.map((item) => {
+      let title_ = item.title.toUpperCase()
+      let searchText_ = searchText.toUpperCase()
+
+      if (title_.includes(searchText_)) {
+        dataSetToUpload.push(item)
+      }
+    })
+    this.setState({ data: dataSetToUpload })
   }
 
   getFoodList = async () => {
@@ -40,6 +59,7 @@ class FoodListContainer extends React.Component {
     return (
       <FoodListComponent
         data={this.state.data}
+        handleSearching={(searchText) => this.handleSearching(searchText)}
         onItemClick={(message) => this.onItemClick(message)}
         onBackPress={() => this.onBackPress()}
         onRetry={() => this.getFoodList()}
