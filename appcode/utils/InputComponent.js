@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         ...globalStyle.width,
         ...globalStyle.input_field_border,
+        ...globalStyle.app_border,
         alignItems: 'center',
         ...globalStyle.input_field_padding,
         height: 50,

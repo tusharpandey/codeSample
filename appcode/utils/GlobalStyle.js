@@ -21,12 +21,24 @@ const globalStyle = StyleSheet.create({
     },
 
     input_field_border: {
-        borderWidth: 1,
-        borderRadius: 3,
         borderColor: AppColor.input_bg_color,
         backgroundColor: AppColor.input_bg_color,
-    }
+    },
 
+    app_border: {
+        borderWidth: 1,
+        borderRadius: 5,
+    },
+
+    tip_border: {
+        borderWidth: 1,
+        borderRadius: 10,
+    },
+
+    item_border_color: {
+        borderColor: AppColor.app_bg_color,
+        backgroundColor: AppColor.white,
+    }
 });
 
 export default globalStyle;

@@ -8,10 +8,6 @@ import ApprovedFoodListComponent from './ApprovedFoodListComponent';
 
 class FoodListComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     let loaderState = this.props.loaderState;
@@ -22,6 +18,8 @@ class FoodListComponent extends React.Component {
 
         {!errorState && <View style={styles.view}>
           <ApprovedFoodListComponent
+            data={this.props.data}
+            onItemClick={this.props.onItemClick}
             onBackPress={this.props.onBackPress} />
         </View>}
 

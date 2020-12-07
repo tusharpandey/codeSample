@@ -8,29 +8,27 @@ import styles from './ApprovedFoodListStyle'
 import AppString from '../../utils/Strings'
 import AppColor from '../../utils/Color';
 import InputComponent from '../../utils/InputComponent';
+import ItemListing from './ItemListing';
 
 class ApprovedFoodListComponent extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    handleSearchText = (text) => {
-
-    }
 
     render() {
         return (
             <View style={{ flex: 1, ...globalStyle.app_padding, backgroundColor: AppColor.app_bg_color }}>
-                <ScrollView style={{ flex: 1 }}>
-                    <CustomImage
-                        onPress={this.props.onBackPress}
-                        source={AppImage.close}
-                        style={styles.cross_button_style}
-                    />
-                    <Text style={styles.page_title_text_style}>{AppString.APPROVED_FOOD_LIST}</Text>
-                    <InputComponent />
-                </ScrollView>
+
+                <ItemListing
+                    data={this.props.data}
+                    onItemClick={this.props.onItemClick}
+                    ListHeaderComponent={<View style={{ marginBottom: 10 }}>
+                        <CustomImage
+                            onPress={this.props.onBackPress}
+                            source={AppImage.close}
+                            style={styles.cross_button_style}
+                        />
+                        <Text style={styles.page_title_text_style}>{AppString.APPROVED_FOOD_LIST}</Text>
+                        <InputComponent />
+                    </View>
+                    } />
                 <View style={styles.message_button_container}>
                     <CustomImage
                         source={AppImage.message}
