@@ -1,7 +1,7 @@
 import React from 'react';
 import FoodListComponent from "./FoodListComponent";
 import GetApprovedFoodUseCase from '../../domain/GetApprovedFoodUseCase';
-import { Button, View } from 'react-native';
+import { goBack } from '../../utils/navigation/NavigationService';
 
 class FoodListContainer extends React.Component {
 
@@ -11,6 +11,10 @@ class FoodListContainer extends React.Component {
       loaderState: false,
       errorState: false,
     }
+  }
+
+  onBackPress = () => {
+    goBack()
   }
 
   getFoodList = async () => {
@@ -27,6 +31,7 @@ class FoodListContainer extends React.Component {
   render() {
     return (
       <FoodListComponent
+        onBackPress={() => this.onBackPress()}
         onRetry={() => this.getFoodList()}
         errorState={this.state.errorState}
         loaderState={this.state.loaderState}

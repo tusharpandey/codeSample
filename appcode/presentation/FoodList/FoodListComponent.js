@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  ActivityIndicator, Button,
-  SafeAreaView, View, TouchableNativeFeedback, Text
+  ActivityIndicator, View
 } from 'react-native';
 import styles from './FoodListStyle'
 import ErrorComponent from '../error/ErrorComponent';
+import ApprovedFoodListComponent from './ApprovedFoodListComponent';
 
 class FoodListComponent extends React.Component {
 
@@ -21,7 +21,8 @@ class FoodListComponent extends React.Component {
       <View style={{ flex: 1 }}>
 
         {!errorState && <View style={styles.view}>
-
+          <ApprovedFoodListComponent
+            onBackPress={this.props.onBackPress} />
         </View>}
 
         {errorState && <ErrorComponent onRetry={() => this.props.onRetry} />}

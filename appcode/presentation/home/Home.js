@@ -2,9 +2,9 @@ import React from 'react';
 import {
   View, Button
 } from 'react-native';
-import { CustomButton } from '../../utils/Button';
+import { CustomButton } from '../../utils/CustomButton';
 import { navigate } from '../../utils/navigation/NavigationService';
-import * as Strings from '../../utils/Strings'
+import AppString from '../../utils/Strings';
 import styles from './HomeStyle'
 
 class Home extends React.Component {
@@ -19,7 +19,7 @@ class Home extends React.Component {
         <View style={styles.view}>
           <CustomButton
             onPress={this._onPress}
-            title={Strings.APPROVED_FOOD_LIST}
+            title={AppString.APPROVED_FOOD_LIST}
           />
         </View>
       </View>

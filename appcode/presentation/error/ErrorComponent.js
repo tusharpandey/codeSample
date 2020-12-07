@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { CustomButton } from '../../utils/Button';
-import * as Strings from '../../utils/Strings'
+import { CustomButton } from '../../utils/CustomButton';
+import AppString from '../../utils/Strings'
 import styles from './ErrorComponentStyle'
 
 class ErrorComponent extends React.Component {
@@ -15,7 +15,7 @@ class ErrorComponent extends React.Component {
       <View style={styles.view}>
         <CustomButton
           onPress={this.onRetry}
-          title={Strings.PLEASE_TRY_AGAIN}
+          title={AppString.PLEASE_TRY_AGAIN}
         />
       </View>
     )
