@@ -2,8 +2,9 @@ import React from 'react';
 import FoodListComponent from "./FoodListComponent";
 import GetApprovedFoodUseCase from '../../domain/GetApprovedFoodUseCase';
 import { goBack } from '../../utils/navigation/NavigationService';
-import DATA from './DataSet';
+import DATA from './DataSet2';
 import { isEmptyText } from '../../utils/TextUtil';
+import { uniqueIDGenerator } from '../../utils/Util';
 
 class FoodListContainer extends React.Component {
 
@@ -12,8 +13,18 @@ class FoodListContainer extends React.Component {
     this.state = {
       loaderState: false,
       errorState: false,
-      data: JSON.parse(JSON.stringify(DATA))
+      data: this.getDataSet()
     }
+  }
+
+  getDataSet() {
+    let dataSet = JSON.parse(JSON.stringify(DATA))
+    let categories = dataSet.categories;
+    categories.map((item, index) => {
+      item.isExpanded = false
+      item.id = uniqueIDGenerator(index) + ""
+    })
+    return dataSet.categories
   }
 
   onBackPress = () => {
@@ -22,13 +33,13 @@ class FoodListContainer extends React.Component {
 
   handleSearching = (searchText) => {
     if (isEmptyText(searchText)) {
-      this.setState({ data: JSON.parse(JSON.stringify(DATA)) })
+      this.setState({ data: this.getDataSet() })
       return
     }
-    let dataSet = JSON.parse(JSON.stringify(DATA))
+    let dataSet = this.getDataSet()
     let dataSetToUpload = []
     dataSet.map((item) => {
-      let title_ = item.title.toUpperCase()
+      let title_ = item.category.categoryName.toUpperCase()
       let searchText_ = searchText.toUpperCase()
 
       if (title_.includes(searchText_)) {
@@ -46,7 +57,7 @@ class FoodListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.getFoodList()
+    // this.getFoodList()
   }
 
   onItemClick = (index) => {

@@ -5,7 +5,7 @@ const DATA = [
         titleHint: '(4 oz Serving)',
         color: 'red',
         isExpanded: false,
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         subItems: [
             {
                 id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba_1_1',
@@ -27,7 +27,7 @@ const DATA = [
         titleHint: '(4 oz Serving)',
         color: 'blue',
         isExpanded: false,
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         tip: 'Lean lunch meat (93% lean or more) appropiate',
         subItems: [
             {
@@ -49,7 +49,7 @@ const DATA = [
         title: 'Third Item',
         titleHint: '(4 oz Serving)',
         color: 'green',
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         isExpanded: false,
         subItems: [
             {
@@ -72,7 +72,7 @@ const DATA = [
         titleHint: '(4 oz Serving)',
         color: 'grey',
         isExpanded: false,
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         tip: 'Lean lunch meat (93% lean or more) appropiate',
         subItems: [
             {
@@ -95,7 +95,7 @@ const DATA = [
         titleHint: '(4 oz Serving)',
         color: 'red',
         isExpanded: false,
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         subItems: [
             {
                 id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba_5_1',
@@ -116,7 +116,7 @@ const DATA = [
         title: 'Sixth Item',
         titleHint: '(4 oz Serving)',
         color: 'blue',
-        messageHint: 'No potatoes, Corn and peas allowed',
+        quote: 'No potatoes, Corn and peas allowed',
         tip: 'Lean lunch meat (93% lean or more) appropiate',
         isExpanded: false,
         subItems: [

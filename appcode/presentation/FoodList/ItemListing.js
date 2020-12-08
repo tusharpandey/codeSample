@@ -4,32 +4,52 @@ import AppImage from '../../utils/AppImage';
 import AppColor from '../../utils/Color';
 import { CustomImage } from '../../utils/CustomImage';
 import globalStyle from '../../utils/GlobalStyle';
+import { isEmptyText } from '../../utils/TextUtil';
+import { uniqueIDGenerator } from '../../utils/Util';
 
-const Item = ({ index, title, titleHint, isExpanded, color, onItemClick, subItems, tip, messageHint }) => (
-    <View style={styles.card}>
-        <TouchableOpacity style={styles.item} activeOpacity={.5} onPress={() => onItemClick(index)}>
-            <Text style={{ ...styles.title, color: color }}>{title + " " + titleHint}</Text>
-            <CustomImage source={isExpanded ? AppImage.up_arrow : AppImage.down_arrow} style={styles.arrow} />
-        </TouchableOpacity>
+function Item({ index, title, titleHint, isExpanded, color, onItemClick, subItems, tip, quote }) {
 
-        {isExpanded &&
-            <View>
-                <SubItemSeperator />
-                <FlatList
-                    ListFooterComponent={tip == undefined ? ItemFooter(messageHint) : ItemSeperatorWithTip(tip, messageHint)}
-                    data={subItems}
-                    ItemSeparatorComponent={SubItemSeperator}
-                    renderItem={({ item, index }) => {
-                        return <Text style={{ ...globalStyle.app_padding }}>{item.title}</Text>
-                    }}
-                    keyExtractor={item => item.id}
-                />
-            </View>}
+    let subcategories = subItems[0].items
+    let itemListing = []
+    subcategories.map((item, index) => {
+        items_subcategories = subcategories[index]
+        itemListing.push({
+            id: uniqueIDGenerator(index),
+            title: item,
+        })
+    })
 
-    </View>
-);
+    return (
+        <View style={styles.card}>
+            <TouchableOpacity style={styles.item} activeOpacity={.5} onPress={() => onItemClick(index)}>
+                <Text style={{ ...styles.title, color: color }}>{title + " " + titleHint}</Text>
+                <CustomImage source={isExpanded ? AppImage.up_arrow : AppImage.down_arrow} style={styles.arrow} />
+            </TouchableOpacity>
 
-const ItemFooter = (text) => {
+            {isExpanded &&
+                <View>
+                    <SubItemSeperator />
+                    <FlatList
+                        // ListFooterComponent={tip == undefined ? ItemFooter(quote) : ItemSeperatorWithTip(tip, quote)}
+                        ListFooterComponent={<View>
+                            {isEmptyText(quote) ? <View /> : ItemFooterQuote(quote)}
+                            {isEmptyText(tip) ? <View /> : ItemFooterTip(tip)}
+                        </View>}
+
+                        data={itemListing}
+                        ItemSeparatorComponent={SubItemSeperator}
+                        renderItem={({ item, index }) => {
+                            return <Text style={{ ...globalStyle.app_padding }}>{item.title}</Text>
+                        }}
+                        keyExtractor={item => item.id}
+                    />
+                </View>}
+
+        </View>)
+}
+
+
+const ItemFooterQuote = (quote) => {
     return (
         <View>
             <SubItemSeperator />
@@ -42,27 +62,13 @@ const ItemFooter = (text) => {
                 alignItems: 'center',
                 justifyContent: 'center'
             }}>
-                <Text>{text}</Text>
+                <Text>{quote}</Text>
             </View>
         </View>)
 }
 
-const ItemSeperatorWithTip = (tip, message) => {
+const ItemFooterTip = (tip) => {
     return (<View>
-        <SubItemSeperator />
-
-        <View style={{
-            height: 50,
-            ...globalStyle.app_border,
-            ...globalStyle.app_margin,
-            borderColor: AppColor.lightblue,
-            backgroundColor: AppColor.lightblue,
-            alignItems: 'center',
-            justifyContent: 'center'
-        }}>
-            <Text>{message}</Text>
-        </View>
-
         <View style={{ flex: 1, backgroundColor: AppColor.app_bg_color }}>
 
             <View style={{
@@ -109,13 +115,13 @@ class ItemListing extends Component {
                     return <Item
                         onItemClick={this.props.onItemClick}
                         index={index}
-                        subItems={item.subItems}
-                        title={item.title}
-                        titleHint={item.titleHint}
-                        color={item.color}
-                        tip={item.tip}
-                        messageHint={item.messageHint}
-                        isExpanded={item.isExpanded} />
+                        subItems={item.category.subcategories}
+                        title={item.category.categoryName}
+                        titleHint={item.category.servingSize == undefined ? "" : `( ${item.category.servingSize} )`}
+                        color={item.category.colorCode}
+                        tip={item.category.protip}
+                        quote={item.category.quote}
+                        isExpanded={item.isExpanded == undefined ? false : item.isExpanded} />
                 }}
                 keyExtractor={item => item.id}
             />
