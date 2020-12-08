@@ -6,6 +6,7 @@ const AppColor = {
     lightblue: '#eff4f8',
     tipColor: '#7cd9e1',
     tipbgColor: '#438cbe',
+    black: '#000000',
 };
 
 export default AppColor;

@@ -9,13 +9,23 @@ import { uniqueIDGenerator } from '../../utils/Util';
 
 function Item({ index, title, titleHint, isExpanded, color, onItemClick, subItems, tip, quote }) {
 
-    let subcategories = subItems[0].items
     let itemListing = []
-    subcategories.map((item, index) => {
-        items_subcategories = subcategories[index]
-        itemListing.push({
-            id: uniqueIDGenerator(index),
-            title: item,
+    subItems.map((item_, index_) => {
+        let subcategories = item_.items
+
+        !isEmptyText(item_.subCategoryname) && itemListing.push({
+            id: uniqueIDGenerator(item_ + index_),
+            title: item_.subCategoryname,
+            isSubCategory: true,
+        })
+
+        subcategories.map((item, index) => {
+            items_subcategories = subcategories[index]
+            itemListing.push({
+                id: uniqueIDGenerator(item + index),
+                title: item,
+                isSubCategory: false,
+            })
         })
     })
 
@@ -30,7 +40,6 @@ function Item({ index, title, titleHint, isExpanded, color, onItemClick, subItem
                 <View>
                     <SubItemSeperator />
                     <FlatList
-                        // ListFooterComponent={tip == undefined ? ItemFooter(quote) : ItemSeperatorWithTip(tip, quote)}
                         ListFooterComponent={<View>
                             {isEmptyText(quote) ? <View /> : ItemFooterQuote(quote)}
                             {isEmptyText(tip) ? <View /> : ItemFooterTip(tip)}
@@ -39,7 +48,9 @@ function Item({ index, title, titleHint, isExpanded, color, onItemClick, subItem
                         data={itemListing}
                         ItemSeparatorComponent={SubItemSeperator}
                         renderItem={({ item, index }) => {
-                            return <Text style={{ ...globalStyle.app_padding }}>{item.title}</Text>
+                            return (
+                                <Text style={{ ...globalStyle.app_padding, color: item.isSubCategory ? color : AppColor.black }}>{item.title}</Text>
+                            )
                         }}
                         keyExtractor={item => item.id}
                     />
